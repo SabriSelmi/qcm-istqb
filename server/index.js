@@ -8,15 +8,13 @@ const PORT = process.env.PORT || 5000; // Set your desired port number
 
 app.use(bodyParser.json());
 app.use(cors());
+const uri = process.env.MONGO_URI;
 // Connect to MongoDB Atlas
 mongoose
-  .connect(
-    "mongodb+srv://userQcm:aA*10000@natulyn.nscik.mongodb.net/qcm?retryWrites=true&w=majority",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }
-  )
+  .connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("Connected to MongoDB Atlas"))
   .catch((err) => console.error(err));
 app.post("/many-questions", (req, res) => {
