@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const question = require("./models/question");
+const score = require("./models/score");
 const app = express();
 const PORT = process.env.PORT || 5000; // Set your desired port number
 
@@ -27,7 +28,16 @@ app.get("/questions", async (req, res) => {
   console.log("here");
   const questions = await question.find({});
   questions.sort(() => Math.random() - 0.5);
-  res.json(questions);
+  res.json(questions.slice(0, 2));
+});
+
+app.post("/score", async (req, res) => {
+  const scoreData = req.body;
+  const newScore = new score({
+    score: scoreData.score,
+    responses: scoreData.responses,
+  });
+  await newScore.save();
 });
 // Define your API routes and middleware here
 
