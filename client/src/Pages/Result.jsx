@@ -2,8 +2,9 @@ import QuestionElementResult from "../Components/QuestionElementResult";
 
 const Result = ({responses}) => {
   const score = responses.filter(resp=> resp.resp.correct === true).length;
+  const result = (score / responses.length) * 100;
   return <div className="container">
-    <h2 className="mt-3 text-danger">Score : {score}/{responses.length}</h2>
+    <h2 className="mt-3 text-danger">Score : {score}/{responses.length} {result < 65? "😭 Don't worry, you will make it, keep working" : "😁 You did it baby! I'm very proud of you 😘😘" }</h2>
     {
       responses.map((resp,index)=>{
        return <div key={index}>
@@ -13,6 +14,7 @@ const Result = ({responses}) => {
        </div> 
       })
     }
+    <button className="btn btn-dark"><a style={{textDecoration : "none", color:"white"}} href="/">Repasser le test 😤</a></button>
   </div>
 }
 
