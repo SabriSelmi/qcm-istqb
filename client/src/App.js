@@ -66,7 +66,7 @@ function App() {
   useEffect(() => {
     const getData = async () => {
       const result = await axios({
-        url: "http://localhost:5000/questions",
+        url: "https://qcm-istqb.vercel.app/questions",
         method: "GET",
       });
       setQuestions(result.data);
