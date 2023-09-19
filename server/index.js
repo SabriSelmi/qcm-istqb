@@ -19,10 +19,13 @@ mongoose
   .then(() => console.log("Connected to MongoDB Atlas"))
   .catch((err) => console.error(err));
 app.post("/many-questions", (req, res) => {
-  const questions = req.body.questions;
-  console.log("question", questions);
-  question.insertMany(questions);
-  res.send("done");
+  try {
+    const questions = req.body.questions;
+    question.insertMany(questions);
+    res.send("done");
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
 
 app.get("/questions", async (req, res) => {

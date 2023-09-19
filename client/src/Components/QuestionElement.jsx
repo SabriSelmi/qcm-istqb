@@ -9,7 +9,8 @@ const options = useMemo(()=>question.options.sort(() => Math.random() - 0.5),[qu
     <div className="pull-right">
       Question {index + 1} / {questionsNumb}
     </div>
-    <h3 className="text-start">Question {index + 1} : {question.question}</h3> 
+    <h3 className="text-start">Question {index + 1} : {question.question.split("\n").map((el,i)=><span>{el} <br/></span>)}</h3> 
+    {question.image ? <img className="img-fluid" src={question.image} alt="question"/> : null}
     <div className="text-start mt-5">
       {options.map((option, i)=>{
         return <div key={i}>
