@@ -28,7 +28,7 @@ app.get("/questions", async (req, res) => {
   console.log("here");
   const questions = await question.find({});
   questions.sort(() => Math.random() - 0.5);
-  res.json(questions);
+  res.json(questions.slice(0, 40));
 });
 
 app.post("/score", async (req, res) => {
