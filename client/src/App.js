@@ -3,7 +3,7 @@ import HomePage from "./Pages/Home";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import QuestionsList from "./Components/QuestionsList";
-import Result from "./Pages/Result";
+import Result from "./Components/Result";
 
 function App() {
   const [step, setStep] = useState(0);

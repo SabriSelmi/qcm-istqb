@@ -25,7 +25,6 @@ app.post("/many-questions", (req, res) => {
 });
 
 app.get("/questions", async (req, res) => {
-  console.log("here");
   const questions = await question.find({});
   questions.sort(() => Math.random() - 0.5);
   res.json(questions.slice(0, 40));
@@ -37,7 +36,14 @@ app.post("/score", async (req, res) => {
     score: scoreData.score,
     responses: scoreData.responses,
   });
-  await newScore.save();
+  const result = await newScore.save();
+  res.json(result);
+});
+
+app.get("/score/:id", async (req, res) => {
+  const id = req.params.id;
+  const result = await score.findById(id);
+  res.json(result);
 });
 // Define your API routes and middleware here
 
