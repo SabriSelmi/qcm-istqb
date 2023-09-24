@@ -29,7 +29,8 @@ app.post("/many-questions", (req, res) => {
 });
 
 app.get("/questions", async (req, res) => {
-  const questions = await question.find({});
+  const regex = new RegExp("ISTQB", "i");
+  const questions = await question.find({ question: { $regex: regex } });
   questions.sort(() => Math.random() - 0.5);
   res.json(questions.slice(0, 40));
 });
